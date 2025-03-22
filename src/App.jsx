@@ -4,8 +4,10 @@ import {createBrowserRouter, RouterProvider} from 'react-router-dom'
 import Login from "./Pages/Login/Login"
 import Player from "./Pages/Player/Player"
 import Search from "./Pages/Search/Search"
-
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 function App() {
+  const queryClient= new QueryClient()
+
    const router=createBrowserRouter([
     {
       element:<AppLayout/>,
@@ -19,15 +21,19 @@ function App() {
           path:"/login"
         },{
           element:<Player/>,
-          path:"player"
+          path:"/player/:movieId"
         },{
           element:<Search/>,
-          path:"search"
+          path:"/search"
         }
     ]
     }
    ])
-  return <RouterProvider router={router}></RouterProvider>
+   return (
+   <QueryClientProvider client={queryClient}>
+    <RouterProvider router={router}></RouterProvider>
+   </QueryClientProvider>
+   )
 }
 
 export default App

@@ -8,11 +8,11 @@ function Home() {
     <div className='container'>
       <Hero/>
       <div>
-        <TitleCard title={'Popular on Netflix'}/>
-        <TitleCard title={'Blockbuster Movies'}/>
-        <TitleCard title={'Only on Netflix'}/>
-        <TitleCard title={'Upcoming'}/>
-        <TitleCard title={"Top Pick's"}/>
+        <TitleCard title={'Popular on Netflix'} cate={'now_playing'}/>
+        <TitleCard title={'Blockbuster Movies'} cate={'top_rated'}/>
+        <TitleCard title={'Only on Netflix'} cate={'popular'}/>
+        <TitleCard title={'Upcoming'} cate={'top_rated'}/>
+        <TitleCard title={"Top Pick's"} cate={'upcoming'}/>
       </div>
     </div>
   )

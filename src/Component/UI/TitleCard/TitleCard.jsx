@@ -1,8 +1,11 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import style from './title.module.css'
 import cards_data from '../../../assets/cards/Cards_data'
 import Carousel from 'react-multi-carousel';
 import 'react-multi-carousel/lib/styles.css';
+import { getTitleData } from '../../API/api';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { NavLink } from 'react-router-dom';
 
 const CustomDot = ({ onClick, active }) => (
   <li
@@ -12,7 +15,7 @@ const CustomDot = ({ onClick, active }) => (
       height: '12px',
       borderRadius: '50%',
       backgroundColor: active ? '#e50914' : '#888',
-      margin: '0 6px',
+      margin: '0 1rem',
       cursor: 'pointer',
       transition: 'all 0.3s',
     }}
@@ -20,7 +23,20 @@ const CustomDot = ({ onClick, active }) => (
 );
 
 
-function TitleCard({title}) {
+function TitleCard({title,cate}) {
+  
+  const {data,isPending,isLoading,isError,error,refetch} =
+    useQuery({
+    queryKey:['title'],
+    queryFn:()=>getTitleData(cate),
+    staleTime: 1000 * 60 * 5, // 5 minutes fresh
+    gcTime: 1000 * 60 * 10,   // 10 minutes before garbage collection
+    refetchOnWindowFocus: false,
+  })
+  // const movies=useQueryClient()
+  // movies.setQueryData(prev=>console.log(prev))
+  // console.log(data)
+
   const responsive = {
     superLargeDesktop: {
       // the naming can be any, depends on you.
@@ -40,6 +56,12 @@ function TitleCard({title}) {
       items: 1
     }
   };
+  if(isPending){
+    return <h1>Loading...</h1>
+  }
+  if(isError){
+    return <h1>{error.message}</h1>
+  }
   return (
     <div className={style.title}>
       <h1>{title}</h1>
@@ -47,17 +69,19 @@ function TitleCard({title}) {
        swipeable={true}
        draggable={true}
        infinite={true}
-       showDots={true}
-       renderButtonGroupOutside
-       customDot={<CustomDot />}
+      //  showDots={true}
+      //  renderButtonGroupOutside
+      //  customDot={<CustomDot />}
        autoPlay={true}
        className={style.cards}>
         {
-          cards_data.map((curr,index)=>{
-            return <div key={index} className={style.card}>
-              <img src={curr.image} className={style['card-img']} alt={curr.name} />
-              <p className={style['card-name']}>{curr.name}</p>
-            </div>
+          data?.results?.map((curr,index)=>{
+            return <NavLink to={`/player/${curr.id}`}>
+                <div key={index} className={style.card}>
+                  <img src={"https://image.tmdb.org/t/p/w300/"+curr.poster_path} className={style['card-img']} alt={curr.name} />
+                  <p className={style['card-name']}>{curr.title}</p>
+                </div>
+              </NavLink>
           })
         }
         </Carousel>

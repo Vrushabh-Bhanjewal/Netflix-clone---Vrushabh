@@ -4,17 +4,19 @@ import { IoNotifications } from "react-icons/io5";
 import { FaUserAlt } from "react-icons/fa";
 import style from './navbar.module.css'
 import logo from "../../../assets/logo.png"
+import { NavLink } from 'react-router-dom';
 function Navbar() {
   return (
     <div className={` ${style.navcont}`}>
     <div className={`${style.navbar} container`}>
 
       <div className={style['nav-left']}>
-        <figure className={style.logo}>
+        <figure className={style.logo}><NavLink to={'/'}>
           <img src={logo} alt="" />
+        </NavLink>
         </figure>
         <ul className={style.list}>
-          <li>Home</li>
+          <li><NavLink to={'/'}>Home</NavLink></li>
           <li>TV Show</li>
           <li>Movies</li>
           <li>News & Popular</li>

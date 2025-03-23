@@ -57,3 +57,43 @@
         }
     }
 }
+
+.hero-info{
+    padding: 2rem;
+    display: flex;
+    gap: 5rem;
+    max-width:95rem ;
+    margin: auto;
+    @media (width < 50rem) {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+.poster{
+    width: 35rem;
+    box-shadow: rgba(238, 237, 240, 0.299) 0px 48px 100px 0px;
+    &:hover{
+        box-shadow: rgba(255, 21, 21, 0.694) 0px 7px 29px 0px;
+        transition: all 0.5s ease-out;
+        scale: 1.05;
+    }
+}
+.content{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;    
+    /* position: relative; */
+}
+.key{
+    color: rgb(249, 96, 96);
+}
+.back{
+    padding: 2rem;
+    font-size: 3rem;
+    background-color: rgb(40, 40, 40);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: fit-content;
+}

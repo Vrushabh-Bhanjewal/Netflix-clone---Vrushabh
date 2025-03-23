@@ -22,6 +22,11 @@ const CustomDot = ({ onClick, active }) => (
   />
 );
 
+export const TitleLoader=()=>{
+  return (<>
+  <div className={style.centerTitle}><div class={style.loader}></div></div>
+  </>)
+}
 
 function TitleCard({title,cate}) {
   
@@ -57,7 +62,7 @@ function TitleCard({title,cate}) {
     }
   };
   if(isPending){
-    return <h1>Loading...</h1>
+    return <TitleLoader/>
   }
   if(isError){
     return <h1>{error.message}</h1>

@@ -6,10 +6,11 @@ import { DetailMovie } from '../../Component/API/api'
 import { FaInfoCircle, FaPlay } from 'react-icons/fa'
 import { TitleLoader } from '../../Component/UI/TitleCard/TitleCard'
 import { IoArrowBackOutline } from "react-icons/io5";
+
 function Player() {
   const movie=useParams()
   const navigate=useNavigate()
-  const {data,isLoading,isError,error }=useQuery({
+  const {data,isLoading,isError,error,ispending, isFetching }=useQuery({
     queryKey:['detail'],
     queryFn:()=>DetailMovie(movie.movieId),
     // staleTime: 1000 * 60 * 5,
@@ -21,7 +22,7 @@ function Player() {
   const lang=data?.spoken_languages.map((curr)=>curr.name).join(', ')
   console.log(movie,data)
   const imageBase="https://image.tmdb.org/t/p/original";
-  if(isLoading){
+  if(isLoading || isFetching){
     return <TitleLoader/>
   }
   return (

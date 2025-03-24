@@ -5,6 +5,8 @@ import Login from "./Pages/Login/Login"
 import Player from "./Pages/Player/Player"
 import Search from "./Pages/Search/Search"
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import ErrorPage from "./Component/UI/Error Page/ErrorPage"
+
 function App() {
   const queryClient= new QueryClient()
 
@@ -12,6 +14,8 @@ function App() {
     {
       element:<AppLayout/>,
       path:'/',
+      errorElement:<ErrorPage/>,
+
       children:[
         {
           element:<Home/>,

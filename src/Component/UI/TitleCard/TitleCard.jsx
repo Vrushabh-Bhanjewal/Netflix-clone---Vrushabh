@@ -24,7 +24,7 @@ const CustomDot = ({ onClick, active }) => (
 
 export const TitleLoader=()=>{
   return (<>
-  <div className={style.centerTitle}><div class={style.loader}></div></div>
+  <div className={style.centerTitle}><div className={style.loader}></div></div>
   </>)
 }
 
@@ -81,8 +81,8 @@ function TitleCard({title,cate}) {
        className={style.cards}>
         {
           data?.results?.map((curr,index)=>{
-            return <NavLink to={`/player/${curr.id}`}>
-                <div key={index} className={style.card}>
+            return <NavLink to={`/player/${curr.id}`} key={index} >
+                <div  className={style.card}>
                   <img src={"https://image.tmdb.org/t/p/w300/"+curr.poster_path} className={style['card-img']} alt={curr.name} />
                   <p className={style['card-name']}>{curr.title}</p>
                 </div>

@@ -20,7 +20,7 @@ function Player() {
   const hr=(data?.runtime/60).toFixed(1);
   const genereName=data?.genres.map(curr=>curr.name).join(', ')
   const lang=data?.spoken_languages.map((curr)=>curr.name).join(', ')
-  console.log(movie,data)
+  // console.log(movie,data)
   const imageBase="https://image.tmdb.org/t/p/original";
   if(isLoading || isFetching){
     return <TitleLoader/>
@@ -29,14 +29,12 @@ function Player() {
     <div className='container'>
     <div
       style={{ 
-        // backgroundImage: `url( ${imageBase.concat(data.backdrop_path)})`, 
-        // backgroundSize: 'cover', 
-        // height: '80rem' 
+        position:'relative',
         paddingBottom:'3rem'
       }}
-      
       >
       <img src={imageBase.concat(data.backdrop_path)} alt="" className={style['bg-img']}/>
+
       <div className={style['hero-head']}>
         <h1 className={style.title}>{data.title}</h1>
         <p>{data.overview}</p>

@@ -26,7 +26,7 @@ function Navbar() {
       </div>
       <div >
           <ul className={style['nav-right']}>
-            <li><span><FaSearch /></span> {"  "}Search</li>
+            <li><NavLink to={'/search'}><span><FaSearch /></span> {"  "}Search</NavLink></li>
             <li><span><IoNotifications/></span></li>
             <li><FaUserAlt /></li>
             <li>Login</li>

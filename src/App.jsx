@@ -15,7 +15,6 @@ function App() {
       element:<AppLayout/>,
       path:'/',
       errorElement:<ErrorPage/>,
-
       children:[
         {
           element:<Home/>,
